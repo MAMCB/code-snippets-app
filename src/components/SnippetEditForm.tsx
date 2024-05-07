@@ -15,7 +15,7 @@ const SnippetEditForm = ({snippet}:SnippetEditFormProps) => {
         <Editor
             height="40vh"
             theme="vs-dark"
-            defaultLanguage="javascript"
+            defaultLanguage={snippet.language || "javascript"}
             defaultValue={snippet.code}
             options={{minimap:{enabled:false}}}
             onChange={handleEditorChange}/>
