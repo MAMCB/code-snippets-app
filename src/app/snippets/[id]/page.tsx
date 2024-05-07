@@ -1,11 +1,9 @@
 import { db } from "@/db";
 import { notFound } from "next/navigation";
+import { SnippetDetailsPageProps } from "@/utils/interfaces";
+import Link from "next/link";
 
-interface SnippetDetailsPageProps {
-    params: {
-        id: string;
-    }
-}
+
 
 const SnippetDetailsPage = async (props: SnippetDetailsPageProps) => {
   const snippet = await db.snippet.findFirst({where: {id: parseInt(props.params.id)}});
@@ -17,7 +15,7 @@ const SnippetDetailsPage = async (props: SnippetDetailsPageProps) => {
       <div className="flex m-4 justify-between items-center">
         <h1 className="text-xl font-bold">{snippet.title}</h1>
         <div className="flex gap-4">
-          <button className="border p-2 rounded">Edit</button>
+          <Link href={`/snippets/${snippet.id}/edit`} className="border p-2 rounded">Edit</Link>
           <button className="border p-2 rounded">Delete</button>
         </div>
       </div>
