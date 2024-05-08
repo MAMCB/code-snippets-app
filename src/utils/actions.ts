@@ -23,7 +23,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
 
   console.log("Snippet updated:", snippet);
   //Redirect the user to the new snippet's page
-  redirect("/");
+  redirect(`/snippets/${id}`);
 }
 
  export async function handleSubmit(formData: FormData) {
@@ -46,5 +46,10 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
    console.log("Snippet created:", snippet);
    //Redirect the user to the new snippet's page
    redirect("/");
+ }
+
+ export async function deleteSnippet(id: number) {
+    await db.snippet.delete({where: {id}});
+    redirect("/");
  }
 

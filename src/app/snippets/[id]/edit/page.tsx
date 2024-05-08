@@ -15,7 +15,7 @@ const SnippetEditPage = async (props:SnippetDetailsPageProps) => {
     
    
 
-  return <div>
+  return <div className="mt-8">
     
     <SnippetEditForm snippet={snippet}  />
 </div>;
