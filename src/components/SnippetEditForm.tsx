@@ -12,6 +12,8 @@ const SnippetEditForm = ({snippet}:SnippetEditFormProps) => {
     const handleEditorChange = (value:string = "", event:any) => {
         setEditedSnippet({...editedSnippet, code: value});
     }
+
+    
   return (
     <div>
       <div className="flex gap-4 my-8 items-center">
@@ -37,7 +39,6 @@ const SnippetEditForm = ({snippet}:SnippetEditFormProps) => {
       </div>
 
       <Editor
-       
         height="40vh"
         theme="vs-dark"
         defaultLanguage={snippet.language || "javascript"}
@@ -46,10 +47,7 @@ const SnippetEditForm = ({snippet}:SnippetEditFormProps) => {
         onChange={handleEditorChange}
       />
 
-      <button
-        className="border p-2 rounded mt-4"
-        onClick={() => editSnippet(editedSnippet,snippet.id)}
-      >
+      <button className="border p-2 rounded mt-4" onClick={()=>editSnippet(editedSnippet,snippet.id)}>
         Submit
       </button>
     </div>
