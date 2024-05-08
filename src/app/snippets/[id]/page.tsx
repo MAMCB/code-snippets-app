@@ -14,7 +14,7 @@ const SnippetDetailsPage = async (props: SnippetDetailsPageProps) => {
     <div>
       <div className="flex m-4 justify-between items-center">
         <h1 className="text-xl font-bold">
-          {snippet.title + " - " + snippet.language}
+          {snippet.title + " - " + snippet.language.toUpperCase()}
         </h1>
         <div className="flex gap-4">
           <Link

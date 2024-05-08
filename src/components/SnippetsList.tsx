@@ -1,5 +1,6 @@
 import { db } from "@/db"
 import Link from "next/link";
+import { getLanguageColor } from "@/utils/interfaces";
 
 const  SnippetsList = async () => {
 
@@ -12,9 +13,10 @@ const  SnippetsList = async () => {
           <Link
             key={snippet.id}
             href={`/snippets/${snippet.id}`}
-            className="flex justify-between items-center p-2 border rounded"
+            className="flex justify-between items-center p-2 border-4 rounded"
+            style={{ borderColor: getLanguageColor(snippet.language) }}
           >
-            <div>{snippet.title + " - " + snippet.language}</div>
+            <div>{snippet.title + " - " + snippet.language.toUpperCase()}</div>
             <div>View</div>
           </Link>
         );
