@@ -8,6 +8,7 @@ export interface SnippetDetailsPageProps {
 
 export interface SnippetEditFormProps {
     snippet: Snippet;
+    editSnippet: (snippet: Snippet) => void;
 
     
 }
