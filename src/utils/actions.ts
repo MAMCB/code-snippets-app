@@ -25,3 +25,26 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
   //Redirect the user to the new snippet's page
   redirect("/");
 }
+
+ export async function handleSubmit(formData: FormData) {
+   
+
+   //Check the user's input and make sure they're valid
+   const title = formData.get("title") as string;
+   const code = formData.get("code") as string;
+   const language = formData.get("language") as string;
+
+   //Create a new record in the database
+   const snippet = await db.snippet.create({
+     data: {
+       title,
+       code,
+       language,
+     },
+   });
+
+   console.log("Snippet created:", snippet);
+   //Redirect the user to the new snippet's page
+   redirect("/");
+ }
+

@@ -1,32 +1,9 @@
-import { db } from "@/db";
-import { redirect } from "next/navigation";
+
 import { SnippetLanguage } from "@/utils/interfaces";
+import { handleSubmit } from "@/utils/actions";
 
 const SnippetForm = () => {
-  async function handleSubmit(formData: FormData) {
-    //this needs to be a server action
-    "use server";
-
-    //Check the user's input and make sure they're valid
-    const title = formData.get("title") as string;
-    const code = formData.get("code") as string;
-    const language = formData.get("language") as string;
-
-    //Create a new record in the database
-    const snippet = await db.snippet.create({
-      data: {
-        title,
-        code,
-        language,
-      },
-    });
-
-    console.log("Snippet created:", snippet);
-    //Redirect the user to the new snippet's page
-    redirect("/");
-
-  }
-
+ 
   return (
     <form action={handleSubmit}>
       <h3 className="font-bold m-3">Create a Snippet</h3>
