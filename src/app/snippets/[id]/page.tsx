@@ -13,9 +13,16 @@ const SnippetDetailsPage = async (props: SnippetDetailsPageProps) => {
   return (
     <div>
       <div className="flex m-4 justify-between items-center">
-        <h1 className="text-xl font-bold">{snippet.title}</h1>
+        <h1 className="text-xl font-bold">
+          {snippet.title + " - " + snippet.language}
+        </h1>
         <div className="flex gap-4">
-          <Link href={`/snippets/${snippet.id}/edit`} className="border p-2 rounded">Edit</Link>
+          <Link
+            href={`/snippets/${snippet.id}/edit`}
+            className="border p-2 rounded"
+          >
+            Edit
+          </Link>
           <button className="border p-2 rounded">Delete</button>
         </div>
       </div>

@@ -14,7 +14,7 @@ const  SnippetsList = async () => {
             href={`/snippets/${snippet.id}`}
             className="flex justify-between items-center p-2 border rounded"
           >
-            <div>{snippet.title}</div>
+            <div>{snippet.title + " - " + snippet.language}</div>
             <div>View</div>
           </Link>
         );

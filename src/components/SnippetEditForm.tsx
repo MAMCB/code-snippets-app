@@ -3,8 +3,9 @@
 import { SnippetEditFormProps } from "@/utils/interfaces";
 import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
+import { editSnippet } from "@/utils/actions";
 
-const SnippetEditForm = ({snippet,editSnippet}:SnippetEditFormProps) => {
+const SnippetEditForm = ({snippet}:SnippetEditFormProps) => {
     const [editedSnippet, setEditedSnippet] = useState(snippet);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -47,7 +48,7 @@ const SnippetEditForm = ({snippet,editSnippet}:SnippetEditFormProps) => {
 
       <button
         className="border p-2 rounded mt-4"
-        onClick={() => editSnippet(editedSnippet)}
+        onClick={() => editSnippet(editedSnippet,snippet.id)}
       >
         Submit
       </button>
