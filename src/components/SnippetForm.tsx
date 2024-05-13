@@ -1,11 +1,13 @@
-
+"use client";
 import { SnippetLanguage } from "@/utils/interfaces";
 import { handleSubmit } from "@/utils/actions";
+import { useFormState } from "react-dom";
 
 const SnippetForm = () => {
+ const [formState, action] = useFormState(handleSubmit,{message:""});
  
   return (
-    <form action={handleSubmit}>
+    <form action={action}>
       <h3 className="font-bold m-3">Create a Snippet</h3>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
@@ -20,21 +22,20 @@ const SnippetForm = () => {
           />
         </div>
         <div className="flex gap-4">
-          <label className="w-16"  htmlFor="language">
+          <label className="w-16" htmlFor="language">
             Language
           </label>
           <select
             className="border rounded p-2 w-full"
-           
             id="language"
             name="language"
           >
             <option value="">Select a language</option>
-           {Object.values(SnippetLanguage).map((language) => (
-            <option key={language} value={language}>
-              {language.toLocaleUpperCase()}
-            </option>
-          ))}
+            {Object.values(SnippetLanguage).map((language) => (
+              <option key={language} value={language}>
+                {language.toLocaleUpperCase()}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex gap-4">
@@ -47,9 +48,10 @@ const SnippetForm = () => {
             name="code"
           />
         </div>
+        <div>{formState.message}</div>
+
         <button className="rounded p-2 bg-blue-200" type="submit">
-          {" "}
-          Create{" "}
+          Create
         </button>
       </div>
     </form>

@@ -26,13 +26,26 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
   redirect(`/snippets/${id}`);
 }
 
- export async function handleSubmit(formData: FormData) {
+ export async function handleSubmit(formState:{message:string},formData: FormData) {
    
 
    //Check the user's input and make sure they're valid
-   const title = formData.get("title") as string;
-   const code = formData.get("code") as string;
-   const language = formData.get("language") as string;
+   const title = formData.get("title");
+   const code = formData.get("code");
+   const language = formData.get("language");
+
+   //validate the user's input
+   if(typeof title !== "string" || title.length < 3) {
+    return {message: "Title must be at least 3 characters long"};
+    }
+
+    if(typeof code !== "string" || code.length < 3) {
+      return {message: "Code must be at least 3 characters long"};
+    }
+
+    if(typeof language !== "string" || language.length < 3) {
+      return {message: "Please select a language"};
+    }
 
    //Create a new record in the database
    const snippet = await db.snippet.create({
