@@ -43,7 +43,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
       return {message: "Code must be at least 3 characters long"};
     }
 
-    if(typeof language !== "string" || language.length < 3) {
+    if(typeof language !== "string" || language.length < 1) {
       return {message: "Please select a language"};
     }
 
