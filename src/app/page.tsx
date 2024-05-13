@@ -1,6 +1,6 @@
 import SnippetsList from "@/components/SnippetsList";
 
-export const dynamic = "force-dynamic";
+
 
 export default function Home() {
   return (

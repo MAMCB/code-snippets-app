@@ -4,6 +4,7 @@
 import type { Snippet } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
+import { revalidatePath } from "next/cache";
 
 export async function editSnippet(SnippetData: Snippet, id: number) {
   //Check the user's input and make sure they're valid
@@ -23,6 +24,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
 
   console.log("Snippet updated:", snippet);
   //Redirect the user to the new snippet's page
+  revalidatePath("/");
   redirect(`/snippets/${id}`);
 }
 
@@ -68,11 +70,13 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
 }
    
    //Redirect the user to the new snippet's page
+   revalidatePath("/");
    redirect("/");
  }
 
  export async function deleteSnippet(id: number) {
     await db.snippet.delete({where: {id}});
+    revalidatePath("/");
     redirect("/");
  }
 
