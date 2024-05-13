@@ -9,8 +9,11 @@ export interface SnippetDetailsPageProps {
 export interface SnippetEditFormProps {
     snippet: Snippet;
     
+}
 
-    
+export interface ErrorPageProps {
+  error: Error,
+  reset:()=>void;
 }
 
 export enum SnippetLanguage {

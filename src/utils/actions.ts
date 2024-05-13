@@ -34,6 +34,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
    const code = formData.get("code");
    const language = formData.get("language");
 
+   try{
    //validate the user's input
    if(typeof title !== "string" || title.length < 3) {
     return {message: "Title must be at least 3 characters long"};
@@ -47,7 +48,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
       return {message: "Please select a language"};
     }
 
-   //Create a new record in the database
+  //  //Create a new record in the database
    const snippet = await db.snippet.create({
      data: {
        title,
@@ -55,8 +56,17 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
        language,
      },
    });
-
    console.log("Snippet created:", snippet);
+ 
+  } catch (error) {
+    if(error instanceof Error) {
+      return {message: error.message};
+  }
+  else {
+    return {message: "An unknown error occurred"};
+  }
+}
+   
    //Redirect the user to the new snippet's page
    redirect("/");
  }
