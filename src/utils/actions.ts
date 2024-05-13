@@ -25,6 +25,7 @@ export async function editSnippet(SnippetData: Snippet, id: number) {
   console.log("Snippet updated:", snippet);
   //Redirect the user to the new snippet's page
   revalidatePath("/");
+  revalidatePath(`/snippets/${id}`);
   redirect(`/snippets/${id}`);
 }
 
